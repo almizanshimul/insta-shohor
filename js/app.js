@@ -15,13 +15,19 @@ const isLiked = (id) => {
   return likedPostsId?.length && !!likedPostsId.includes(id);
 };
 
+/*----------------------- 
+Liked Post Push in array
+-------------------------- */
+
 const addToLiked = (id) => {
   if (likedPostsId.indexOf(id) === -1) {
     likedPostsId.push(id);
     showPosts(posts);
   }
 };
-
+/*----------------------- 
+Reported Post Push in array
+-------------------------- */
 const reportPost = (id) => {
   reportedPostsId.push(id);
   const remainingPosts = posts.filter((post) => !reportedPostsId.includes(post.id));
@@ -31,6 +37,10 @@ const reportPost = (id) => {
 const displayContent = (text) => {
   return text.length < 30 ? text : text.slice(0, 30) + "<span class='fw-bold'>... read more</span>";
 };
+
+/*-----------------
+ All In one Header show and hide
+-------------------- */
 
 const switchTab = (id) => {
   if (id === "posts") {
@@ -52,6 +62,9 @@ const switchTab = (id) => {
   }
 };
 
+/* -------------
+Create Post 
+---------------- */
 const createPost = (post) => {
   const image = post.image;
   const userImage = post.userImage;
@@ -143,7 +156,9 @@ const showPosts = (posts) => {
     productsContainer.appendChild(div);
   });
 };
-
+/* ----------------------
+Liked Post Show on page  
+-----------------------*/
 const displayLikedPosts = () => {
   document.getElementById("like-post").innerHTML = '';
   const likedPosts = getLikedPosts();
@@ -152,7 +167,9 @@ const displayLikedPosts = () => {
     document.getElementById("like-post").appendChild(div);
   });
 };
-
+/* ----------------------
+Reported Post Show on page  
+-----------------------*/
 const displayReportedPosts = () => {
   document.getElementById("report-post").innerHTML = '';
   const reportedPosts = getReportedPosts();
